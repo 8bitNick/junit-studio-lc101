@@ -13,7 +13,7 @@ public class BalancedBrackets {
      * The string may contain non-bracket characters as well.
      *
      * These strings have balanced brackets:
-     *  "[LaunchCode]", "Launch[Code]", "[]LaunchCode", "", "[]"
+     *  "[LaunchCode]", "Launch[Code]", "[]LaunchCode", "[]"
      *
      * While these do not:
      *   "[LaunchCode", "Launch]Code[", "[", "]["
@@ -24,6 +24,12 @@ public class BalancedBrackets {
     public static boolean hasBalancedBrackets(String str) {
         int brackets = 0;
         for (char ch : str.toCharArray()) {
+            if (brackets < 0) {
+                return false;
+            }
+            if (!str.contains("[") && !str.contains("]")) {
+                return false;
+            }
             if (ch == '[') {
                 brackets++;
             } else if (ch == ']') {
